@@ -5,8 +5,8 @@ package com.in28minutes.multithreading;
 // Udemy Java MultiThreading 1
 // https://www.youtube.com/watch?v=905Emnqi5JM&list=WL&index=7
 
-//extends Thread
-//implements Runnable
+//extends "Thread" at Task1
+//implements "Runnable" at Task2
 class Task1 extends Thread {
 
 	public void run() { // SIGNATURE
@@ -41,15 +41,18 @@ public class ThreadBasicsRunner {
 
 		System.out.print("\nTask1 Kicked Off");
 		Task1 task1 = new Task1();
-		task1.setPriority(1);
+		task1.setPriority(1); // 10 is the highest priority
 		task1.start(); // task1.run();
 		System.out.print("\nTask2 Kicked Off");
 
 		Task2 task2 = new Task2();
-		Thread task2Thread = new Thread(task2);
+		Thread task2Thread = new Thread(task2); // have to create for a class implements Runnable
 		task2Thread.setPriority(10);
 		task2Thread.start();
+
+		// wait for task1 to complete
 		task1.join();
+		// wait for task2 to complete
 		task2Thread.join();
 
 		System.out.print("\nTask3 Kicked Off");
